@@ -18,6 +18,7 @@ Magenta.Echo.InlineBooking.Views.WebPaymentPopup = function (_configs, onClosePo
     };
 
     var timer = null;
+    var pollingTimer = null;
 
     setConfigs(_configs);
     setWebPaymentWindowConfigs();
@@ -111,7 +112,7 @@ Magenta.Echo.InlineBooking.Views.WebPaymentPopup = function (_configs, onClosePo
         }, function (result) {
             failure(result);
             closeWebPaymentWindow();
-        })
+        }, { receiptId: data.receipt });
     }
 
     function loadDeviceDetails(data, success, failure) {
@@ -130,7 +131,7 @@ Magenta.Echo.InlineBooking.Views.WebPaymentPopup = function (_configs, onClosePo
             failure(response);
 
             closeWebPaymentWindow();
-        });
+        }, { receiptId: data.receipt });
 
         this.submitWindowPopupForm();
     }
@@ -151,7 +152,7 @@ Magenta.Echo.InlineBooking.Views.WebPaymentPopup = function (_configs, onClosePo
             failure(response);
 
             closeWebPaymentWindow();
-        });
+        }, { receiptId: data.receipt });
 
         this.submitWindowPopupForm();
     }
@@ -197,7 +198,7 @@ Magenta.Echo.InlineBooking.Views.WebPaymentPopup = function (_configs, onClosePo
         }, function (result) {
             failure(result);
             closeWebPaymentWindow();
-        });
+        }, { localPaymentReference: data.localPaymentReference });
     }
 
     function openWebPaymentWindow() {
@@ -219,37 +220,51 @@ Magenta.Echo.InlineBooking.Views.WebPaymentPopup = function (_configs, onClosePo
         return webPaymentWindow && !webPaymentWindow.closed;
     }
 
-    function waitForWindowPopupFeedback(success, failure) {
+    function waitForWindowPopupFeedback(success, failure, paymentReference) {
         if (timer) {
             clearInterval(timer);
         }
+        if (pollingTimer) {
+            clearInterval(pollingTimer);
+        }
+
         timer = setInterval(function () {
             if (!webPaymentWindow || webPaymentWindow.closed) {
                 clearInterval(timer);
+                if (pollingTimer) {
+                    clearInterval(pollingTimer);
+                }
                 onClosePopup();
             }
         }, 1000);
 
-        window.removeEventListener("message", getOnPaymentPopupMessageCallback(success, failure));
-        window.addEventListener("message", getOnPaymentPopupMessageCallback(success, failure));
+        pollingTimer = setInterval(function () {
+            if (!webPaymentWindow || webPaymentWindow.closed) {
+                return;
+            }
+            mg_echo_global.ajax({
+                url: "/paymentCompleted",
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: JSON.stringify(paymentReference)
+            }, true)
+                .done(function (data) {
+                    if (data && data.success === true) {
+                        clearInterval(timer);
+                        clearInterval(pollingTimer);
+                        success(data);
+                    }
+                })
+                .fail(function () {
+                    clearInterval(timer);
+                    clearInterval(pollingTimer);
+                    failure({});
+                    closeWebPaymentWindow();
+                });
+        }, 15000);
 
         webPaymentWindow.document.forms[0].submit();
-    }
-
-    function getOnPaymentPopupMessageCallback(success, failure) {
-        if (!this._onPaymentPopupMessage) {
-            this._onPaymentPopupMessage = function(event) {
-                var webPaymentResponse = JSON.parse(event.data)
-                if (webPaymentResponse['status']) {
-                    if (webPaymentResponse['status'] === 'SUCCESS') {
-                        success(webPaymentResponse);
-                    } else {
-                        failure(webPaymentResponse);
-                    }
-                }
-            }
-        }
-        return this._onPaymentPopupMessage;
     }
 
     function setConfigs(_configs) {
