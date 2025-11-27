@@ -225,10 +225,8 @@ Magenta.Echo.InlineBooking.Views.WebPaymentPopup = function (_configs, onClosePo
             clearInterval(pollingTimer);
         }
 
-        // Submit the form in the popup window
         webPaymentWindow.document.forms[0].submit();
 
-        // Start polling for payment completion
         pollingTimer = setInterval(function () {
             mg_echo_global.ajax({
                 url: "/paymentCompleted",
@@ -242,7 +240,6 @@ Magenta.Echo.InlineBooking.Views.WebPaymentPopup = function (_configs, onClosePo
                         clearInterval(pollingTimer);
                         success(data);
                     }
-                    // If success is false or not present, continue polling
                 })
                 .fail(function () {
                     clearInterval(pollingTimer);
