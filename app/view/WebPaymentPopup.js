@@ -221,27 +221,15 @@ Magenta.Echo.InlineBooking.Views.WebPaymentPopup = function (_configs, onClosePo
     }
 
     function waitForWindowPopupFeedback(success, failure, paymentReference) {
-        if (timer) {
-            clearInterval(timer);
-        }
         if (pollingTimer) {
             clearInterval(pollingTimer);
         }
 
-        timer = setInterval(function () {
-            if (!webPaymentWindow || webPaymentWindow.closed) {
-                clearInterval(timer);
-                if (pollingTimer) {
-                    clearInterval(pollingTimer);
-                }
-                onClosePopup();
-            }
-        }, 1000);
+        // Submit the form in the popup window
+        webPaymentWindow.document.forms[0].submit();
 
+        // Start polling for payment completion
         pollingTimer = setInterval(function () {
-            if (!webPaymentWindow || webPaymentWindow.closed) {
-                return;
-            }
             mg_echo_global.ajax({
                 url: "/paymentCompleted",
                 type: 'POST',
@@ -251,20 +239,16 @@ Magenta.Echo.InlineBooking.Views.WebPaymentPopup = function (_configs, onClosePo
             }, true)
                 .done(function (data) {
                     if (data && data.success === true) {
-                        clearInterval(timer);
                         clearInterval(pollingTimer);
                         success(data);
                     }
+                    // If success is false or not present, continue polling
                 })
                 .fail(function () {
-                    clearInterval(timer);
                     clearInterval(pollingTimer);
                     failure({});
-                    closeWebPaymentWindow();
                 });
         }, 15000);
-
-        webPaymentWindow.document.forms[0].submit();
     }
 
     function setConfigs(_configs) {
