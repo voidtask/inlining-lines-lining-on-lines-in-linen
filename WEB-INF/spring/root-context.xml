@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/cache
+       http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+    <!--
+        Включаем опцию использования конфигурационных аннотаций (@Annotation-based configuration)
+    -->
+    <context:annotation-config/>
+    <context:component-scan base-package="com.magenta.sc.web.service"/>
+    <context:component-scan base-package="com.magenta.sc.inlinebooking.service"/>
+    <context:component-scan base-package="com.magenta.sc.inlinebooking.converter"/>
+
+    <import resource="security-context.xml"/>
+    <import resource="servlet-context.xml"/>
+
+    <!-- Делает релогин, если сессия на Core сервере была удалена (например после рестарта JBoss) -->
+    <bean class="com.magenta.sc.web.component.WebReAuthInterceptor"/>
+
+    <bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <array>
+                <value>classpath:application.properties</value>
+                <value>classpath:env.properties</value>
+            </array>
+        </property>
+        <property name="fileEncoding" value="UTF-8"/>
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="singleton" value="false"/>
+    </bean>
+
+    <bean id="parentMessageSource" class="com.magenta.sc.web.l10n.CustomResourceBundleMessageSource">
+        <property name="basename" value="messages" />
+        <property name="path" value="messages"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+
+    <bean id="messageSource" class="com.magenta.sc.web.l10n.CustomResourceBundleMessageSource">
+        <property name="parentMessageSource" ref="parentMessageSource"/>
+        <property name="companyService" ref="companyService"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+
+    <bean class="com.magenta.sc.web.l10n.LocalizationProvider" id="localizationProvider">
+        <property name="messageSource" ref="messageSource"/>
+    </bean>
+
+    <!-- Cache -->
+    <cache:annotation-driven key-generator="cacheKeyGenerator"/>
+
+    <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+        <property name="caches">
+            <set>
+                <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean">
+                    <property name="name" value="default"/>
+                </bean>
+                <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean">
+                    <property name="name" value="settings"/>
+                </bean>
+            </set>
+        </property>
+    </bean>
+
+    <bean id="cacheKeyGenerator" class="com.magenta.sc.web.component.CacheKeyDefaultGenerator"/>
+
+    <bean class="com.magenta.sc.web.component.LoggerProvider">
+        <property name="name" value="inline-booking-logger"/>
+    </bean>
+
+    <bean id="reporter" class="com.magenta.sc.exceptions.impl.SentryReporterImpl">
+        <property name="filterExceptions" value="true"/>
+    </bean>
+</beans>

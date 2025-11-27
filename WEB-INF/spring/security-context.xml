@@ -1,0 +1,93 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+             http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+    <http use-expressions="true" entry-point-ref="ajaxEntryPoint" create-session="stateless">
+        <intercept-url pattern="/test/RlvY4wD8mUkBnZDA/" access="permitAll()"/>
+        <intercept-url pattern="/test/RlvY4wD8mUkBnZDA/*" access="permitAll()"/>
+
+        <intercept-url pattern="/resources/**" access="permitAll()"/>
+
+        <!--for not auth debug-->
+        <intercept-url pattern="/app/**" access="permitAll()"/>
+
+        <intercept-url pattern="/favicon.ico" access="permitAll()"/>
+        <intercept-url pattern="/l10n.js" access="permitAll()"/>
+
+        <intercept-url pattern="/demo-page" access="permitAll()"/>
+        <intercept-url pattern="/demo-page/**" access="permitAll()"/>
+        <intercept-url pattern="/demo-page-airport" access="permitAll()"/>
+        <intercept-url pattern="/demo-page-airport/**" access="permitAll()"/>
+        <intercept-url pattern="/reset_password" access="permitAll()"/>
+        <intercept-url pattern="/reset_password/*" access="permitAll()"/>
+        <intercept-url pattern="/getHTML" access="permitAll()"/>
+        <intercept-url pattern="/getHTMLAirport" access="permitAll()"/>
+        <intercept-url pattern="/report" access="permitAll()"/>
+        <intercept-url pattern="/error" access="permitAll()"/>
+
+        <intercept-url pattern="/api/secured/**" access="isAuthenticated()" method="POST"/>
+        <intercept-url pattern="/api/secured/**" access="permitAll()" method="OPTIONS"/>
+        <intercept-url pattern="/api/secured/payments/success" access="permitAll()"/>
+        <intercept-url pattern="/api/secured/payments/failed" access="permitAll()"/>
+        <intercept-url pattern="/api/**" access="permitAll()"/>
+
+        <intercept-url pattern="/**" access="isAuthenticated()"/>
+        <intercept-url pattern="/" access="permitAll()"/>   <!-- redirect inside -->
+
+        <form-login login-page="/login"
+                    default-target-url="/"
+                    authentication-failure-url="/login?error=true"
+                    username-parameter="username"
+                    password-parameter="password"/>
+
+        <logout logout-url="/logout"
+                logout-success-url="/login"/>
+
+        <anonymous username="guest" granted-authority="ROLE_ANONYMOUS"/>
+        <access-denied-handler error-page="/403" />
+
+        <custom-filter position="FIRST" ref="xssFilter" />
+        <custom-filter ref="jwtTokenFilter" before="FORM_LOGIN_FILTER"/>
+
+        <csrf disabled="true"/>
+    </http>
+
+    <beans:bean id="ajaxEntryPoint" class="com.magenta.sc.web.auth.AjaxAwareAuthenticationEntryPoint">
+        <beans:constructor-arg value="/login"/>
+        <beans:constructor-arg value="api/secured/"/>
+    </beans:bean>
+
+    <authentication-manager alias="authManager">
+        <authentication-provider ref="authenticationProvider"/>
+    </authentication-manager>
+
+    <beans:bean id="customerDetailsService" class="com.magenta.sc.web.auth.impl.CustomerUserDetailsServiceImpl"/>
+    <beans:bean id="jwtProvider" class="com.magenta.sc.inlinebooking.service.impl.InlineBookingJwtProvider"/>
+
+    <beans:bean id="authenticationProvider"
+                class="com.magenta.sc.web.auth.provider.CustomerAuthenticationProvider">
+        <beans:constructor-arg ref="customerDetailsService"/>
+        <beans:constructor-arg ref="companyService"/>
+    </beans:bean>
+
+    <!-- Фильтр для Multi Company -->
+    <beans:bean id="companyFilter" class="com.magenta.sc.web.component.CompanyFilter"/>
+    <beans:bean id="xssFilter" class="com.magenta.sc.web.component.xss.XSSPreventionFilter"/>
+
+    <!-- Фильтр для работы CORS -->
+    <beans:bean id="customCorsFilter" class="com.magenta.sc.web.component.CustomCorsFilter"/>
+
+    <beans:bean id="jwtTokenFilter" class="com.magenta.sc.web.component.JwtTokenFilter">
+        <beans:constructor-arg ref="customerDetailsService"/>
+        <beans:constructor-arg ref="jwtProvider"/>
+        <beans:constructor-arg value="/inline-booking/api/secured/"/>
+    </beans:bean>
+
+    <!-- Для получения account number при логине -->
+    <!-- todo: not used in inline-booking -->
+    <beans:bean id="authDetailsSource" class="com.magenta.sc.web.auth.CustomerAuthenticationDetailsSource"/>
+
+</beans:beans>

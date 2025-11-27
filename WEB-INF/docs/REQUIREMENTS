@@ -1,0 +1,4 @@
+
+Please, note that jQuery 1.11.1 is used in the head/resources-dev.jsp and head/resources-prod.jsp. 
+So if you have jQuery used in your web site, you`ll need to upgrade it to the 1.11.1+ version and comment it in the head/resources-dev.jsp and head/resources-prod.jsp.
+Or comment it in your code and use that one that comes with head/resources-dev.jsp and head/resources-prod.jsp. 

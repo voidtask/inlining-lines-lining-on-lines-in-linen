@@ -1,0 +1,2 @@
+})($jQueryEcho);
+jQuery = $ = jQueryOnSite !== null? jQueryOnSite : null;

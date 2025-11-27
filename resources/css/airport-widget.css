@@ -1,0 +1,131 @@
+#mg-echo-content.mg-echo-airport-wrap {
+    max-width: 335px;
+}
+
+#mg-echo-booking-form-step-1.mg-echo-airport {
+    min-width: auto;
+}
+
+#mg-echo-booking-form-step-1.mg-echo-airport .stops-wrapper .mg-echo-label {
+    color: #fff;
+    margin-bottom: 4px;
+    font-size: 16px;
+}
+#mg-echo-booking-form-step-1.mg-echo-airport .field-container-wrapper {
+    height: auto;
+}
+#mg-echo-booking-form-step-1.mg-echo-airport .date.field-container .trigger {
+    background-image: url('/inline-booking-static/resources/images/calendar.png');
+}
+.mg-echo-airport .mg-echo-trips-wrapper .mg-echo-label {
+    color: #fff;
+    margin-bottom: 4px;
+    font-size: 16px;
+}
+#mg-echo-booking-form-step-1.mg-echo-airport .mg-echo-airport-notes {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 15px;
+}
+.mg-echo-airport .mg-echo-airport-error-wrapper {
+    text-align: center;
+    color: #fff;
+    font-size: 15px;
+}
+.mg-echo-airport .mg-echo-airport-error-icon {
+    background-image: url('/inline-booking-static/resources/images/svg-icons/warning-white.svg');
+    background-size: contain;
+    display: inline-block;
+    width: 32px; height: 28px;
+    margin: 40px 0 20px 0;
+}
+
+.mg-echo-view.mg-echo-airport .field-container-wrapper.flightNumber-wrapper {
+    width: 100%;
+}
+#mg-echo-booking-form-step-1.mg-echo-airport .date-wrapper {
+    width: 100%;
+    margin-bottom: 20px;
+}
+.mg-echo-view.mg-echo-airport .field-container-wrapper.flightNumber-wrapper.mg-echo-error .field-container {
+    border: solid 1px #F00;
+}
+
+#mg-echo-booking-form-step-1.mg-echo-airport .btn.next {
+    min-width: 100%;
+    height: 50px;
+    font-size: 16px;
+}
+
+#mg-echo-booking-form-step-1.mg-echo-airport .mg-echo-airport-search-btn {
+    text-transform: uppercase;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 12px;
+    font-size: 15px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 12px;
+}
+
+.mg-echo-view.mg-echo-airport .mg-echo-airport-item {
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 12px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.mg-echo-view.mg-echo-airport .mg-echo-airport-item:last-child {
+    margin-bottom: 0px;
+}
+
+.mg-echo-view.mg-echo-airport .mg-echo-airport-selected-item {
+    color: #fff;
+    padding-right: 20px;
+    font-size: 15px;
+}
+.mg-echo-view.mg-echo-airport .mg-echo-airport-selected-item .mg-echo-edit-icon {
+    position: absolute;
+    right: 0;
+    top: 18px;
+    width: 18px;
+    height: 18px;
+    background: url('/inline-booking-static/resources/images/edit.png') no-repeat 100% 50%;
+    background-size: contain;
+    cursor: pointer;
+}
+
+#mg-echo-booking-form-step-2 .column-title {
+    padding-top: 5px;
+}
+
+#mg-echo-booking-form-step-2 #flight-window-wrapper .flight-checker-messages .pick-up-time .value {
+    font-size: 19px;
+}
+#mg-echo-booking-form-step-2 #flight-window-wrapper .flight-checker-messages {
+    margin-top: 10px;
+}
+#mg-echo-booking-form-step-2 #flight-checker-wrapper input[disabled] {
+    opacity: 0.5;
+}
+#mg-echo-booking-form-step-2.mg-echo-airport .flight-checker-wrapper .field-container {
+    padding: 5px 20px 0px 20px;
+}
+#mg-echo-booking-form-step-2.mg-echo-airport .additional-instructions-wrapper {
+    height: 36px;
+}
+#mg-echo-booking-form-step-2.mg-echo-airport .field-container-wrapper {
+    margin-bottom: 8px;
+}
+#mg-echo-booking-form-step-2.mg-echo-airport .mg-echo-right-overlay {
+    padding-top: 65px;
+}
+
+@media screen and ( max-width: 800px ) {
+    #mg-echo-booking-form-step-1 .date-wrapper {
+        width: 100%;
+    }
+    .mg-echo-view.mg-echo-airport .field-container-wrapper.flightNumber-wrapper {
+        margin-right: 0;
+    }
+}

@@ -1,0 +1,3 @@
+var $jQueryEcho = jQuery.noConflict(true);
+(function($){
+window.jQuery = $;

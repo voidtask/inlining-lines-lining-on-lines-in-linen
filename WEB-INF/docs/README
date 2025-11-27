@@ -1,0 +1,35 @@
+
+                          Inline Booking
+
+  What is it?
+  -----------
+
+  Inline Booking is a set of code snippets designed to embed a booking form into your web site
+   
+  Browser Support
+  ---------------
+
+  Please see the file called README.browsers.
+
+  Description
+  ------------
+  
+  Please see the file called DESCRIPTION.doc to get an overview of the Inline Booking and to understand 'What it looks like?'. 
+
+  Integration
+  ------------
+
+  Please see the file called REQUIREMENTS before integration.
+  
+  Next if you want to integrate a developer version (to test the snippets) please use:
+  * inline-booking-scriplets\head\properties-dev.jsp (script with Inline Booking settings)
+  * inline-booking-scriplets\head\resources-dev.jsp (resources to test the functionality)
+  * inline-booking-scriplets\body\visible.jsp (first step booking form)
+  * inline-booking-scriplets\body\hidden.jsp (login form and full booking form)
+  
+  If you want to integrate a production version (to test the snippets) please use:
+  * inline-booking-scriplets\head\properties-prod.jsp (script with Inline Booking settings)
+  * inline-booking-scriplets\head\resources-prod.jsp (resources to test the functionality)
+  * inline-booking-scriplets\body\visible.jsp (first step booking form)
+  * inline-booking-scriplets\body\hidden.jsp (login form and full booking form)
+

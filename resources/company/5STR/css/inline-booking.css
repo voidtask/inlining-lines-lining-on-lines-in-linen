@@ -1,0 +1,233 @@
+/*Bootstrap datepicker*/
+
+.mg-echo-view .bootstrap-datetimepicker-widget .btn {
+    color: #363636;
+}
+
+.mg-echo-view .bootstrap-datetimepicker-widget .picker-switch td.ok-wrapper  {
+    padding-right: 8px;
+    padding-left: 4px;
+}
+
+.mg-echo-view .bootstrap-datetimepicker-widget .picker-switch td span.asap {
+    color: #ce111a;
+    border: solid #ce111a 2px;
+}
+
+.mg-echo-view .bootstrap-datetimepicker-widget .picker-switch td span.ok {
+    color: #ffffff;
+    background-color: #ce111a;
+    border: solid #ce111a 2px;
+}
+.mg-echo-view .bootstrap-datetimepicker-widget a {
+    color: #ce111a;
+}
+.mg-echo-view .bootstrap-datetimepicker-widget table td.active,
+.mg-echo-view .bootstrap-datetimepicker-widget table td.active:hover {
+    background-color: #363636;
+}
+/********** autocomplete ************/
+
+.short-form-autocomplete .autocomplete-suggestion.autocomplete-selected {
+    background: #363636;
+    color: #fff5ff;
+}
+
+.short-form-autocomplete .autocomplete-suggestion {
+    background: #fff;
+    border: none;
+    color: #000;
+}
+.autocomplete-suggestion .mg-icon-airport {
+    background-image: url(/inline-booking-static/resources/company/MT/images/airport-selected.png);
+}
+.autocomplete-suggestion .mg-icon-meeting {
+    background-image: url(/inline-booking-static/resources/company/MT/images/meeting-selected.png);
+}
+.autocomplete-suggestion .mg-icon-train {
+    background-image: url(/inline-booking-static/resources/company/MT/images/train-selected.png);
+}
+.autocomplete-suggestion.autocomplete-selected .mg-icon-airport {
+    background-image: url(/inline-booking-static/resources/company/MT/images/airport.png);
+}
+.autocomplete-suggestion.autocomplete-selected .mg-icon-meeting {
+    background-image: url(/inline-booking-static/resources/company/MT/images/meeting.png);
+}
+/************************/
+
+#mg-echo-booking-form-step-1 {
+    margin-bottom: 10px;
+    background-color: #ce111a;
+}
+
+#mg-echo-booking-form-step-1 .field-container .mg-echo-label {
+    color: #616161;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+#mg-echo-booking-form-step-1 .btn.next {
+    background: #363636;
+    color: #fff5ff;
+    border: solid 1px #363636;
+}
+
+#mg-echo-booking-form-step-2 .echo-title,
+#mg-echo-booking-confirmation .echo-title {
+    color: #ce111a;
+}
+
+#mg-echo-booking-form-step-2 .column-title {
+    color: #ce111a;
+}
+
+.mg-echo-close-icon #close-icon-fill {
+    fill: #ce111a;
+}
+
+#mg-echo-booking-form-step-2 .mg-echo-bottom-panel {
+    background: #ce111a;
+    overflow: auto;
+    color: #fff5ff;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+#mg-echo-booking-form-step-2 .mg-echo-bottom-panel a{
+    color: #fff5ff;
+    text-decoration: none;
+}
+
+#mg-echo-booking-form-step-2 .mg-echo-bottom-panel-fixed {
+    background: #ce111a;
+}
+
+#mg-echo-booking-form-step-2 .field-container-wrapper {
+    border: solid 1px #c4d2da;
+}
+
+.mg-echo-view .mg-echo-right-overlay .field-container input:-webkit-autofill {
+    box-shadow: inset 0px 0px 0px 20px rgb(77, 77, 77);
+    -webkit-text-fill-color: #ffffff;
+}
+
+.mg-echo-view .success-message {
+    background: #ce111a;
+}
+
+.mg-echo-view div.mg-echo-error {
+    padding: 0;
+}
+.mg-echo-view .mg-echo-right-overlay .error-message {
+    color: #000000;
+    background-color: #ffe397;
+    background-image: url(/inline-booking-static/resources/images/warning-black.png);
+}
+
+#mg-echo-booking-form-step-2 .mg-echo-background-right-overlay {
+    background: #000000;
+    opacity: 0.7;
+}
+
+.mg-echo-proceed-payment-lock-button:hover {
+    color: #000000;
+}
+
+.mg-echo-view .mg-echo-next-btn {
+    color: #000000;
+}
+
+#mg-echo-booking-form-step-2 .mg-echo-right-overlay .field-container-wrapper.mg-echo-focus .mg-echo-label {
+    color: #ffffff!important;
+    background: none;
+}
+#mg-echo-booking-form-step-2 .mg-echo-right-overlay .field-container-wrapper.mg-echo-error, #mg-echo-booking-form-step-2 .mg-echo-right-overlay .field-container.date.mg-echo-error {
+    border: solid 1px #ffe397 !important;
+}
+#mg-echo-booking-form-step-2 .mg-echo-right-overlay .field-container-wrapper.mg-echo-error .mg-echo-label, #mg-echo-booking-form-step-2 .mg-echo-right-overlay .field-container.date.mg-echo-error .mg-echo-label {
+    color: #ffe397!important;
+}
+
+.mg-echo-view .mg-echo-auth-panel .mg-echo-auth-name .mg-echo-auth-name-value{
+    color: #4a90e2!important;
+    font-size: 14px;
+}
+.mg-echo-logout-link {
+    color: #000000;
+}
+#mg-echo-booking-form-step-2 .field-container-wrapper.mg-echo-focus .mg-echo-label {
+    background-color: #000000;
+}
+#mg-echo-booking-form-step-2 .field-container-wrapper.mg-echo-focus {
+    border-color: #000000;
+}
+.customSelect-suggestion:hover {
+    background-color: #000000;
+}
+.autocomplete-suggestion:hover {
+    background-color: #000000;
+}
+
+#mg-echo-booking-form-step-2 .mg-echo-bottom-panel .mg-echo-link-btn {
+    border: 1px solid #fff !important;
+    border-radius: 0px;
+    padding: 13px !important;
+    text-decoration: none;
+    width: 30%;
+    text-align: center;
+    font-size: 16px;
+}
+#mg-echo-booking-form-step-2 .mg-echo-book {
+    background: #ffffff;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 3px 6px 0 rgba(0, 0, 0, 0.3);
+    color: #000000;
+    border-radius: 0;
+    font-weight: bold;
+    padding: 0px !important;
+    width: 70%;
+    margin-right: 15px;
+    border: 0px;
+}
+
+#mg-echo-booking-form-step-2 .mg-echo-bottom-panel .mg-echo-column.right {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+}
+
+.mg-echo-bottom-buttons-panel {
+    background-color: #ce111a;
+    padding: 30px 40px;
+}
+
+.extra-charges-link {
+    color: #8298a4;
+    text-decoration: underline!important;
+}
+#mg-echo-booking-form-step-2 .column-title, #mg-echo-booking-confirmation .column-title {
+    color: #ce111a;
+}
+
+#mg-echo-booking-confirmation .additional-info {
+    color: #ce111a;
+}
+
+#mg-echo-ib-form {
+    background-color: #ce111a;
+}
+
+.mg-echo-view input{
+    vertical-align: top;
+}
+
+@media screen and ( max-width: 800px ) {
+    #mg-echo-booking-form-step-2.state-anonym.first-time-booking .mg-echo-booking-form-full {
+        background: #ce111a;
+    }
+    .mg-echo-view .mg-echo-right-overlay .field-container input:-webkit-autofill {
+        box-shadow: inset 0px 0px 0px 20px rgba(74, 144, 226, 1);
+    }
+    #mg-echo-booking-form-step-2 .mg-echo-bottom-panel-fixed {
+        background: #ce111a;
+    }
+}

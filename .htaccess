@@ -1,0 +1,3 @@
+<IfModule filter_module>
+	SetEnvIf Request_URI ^/inline-booking-static/ no-gzip=1
+ </IfModule>

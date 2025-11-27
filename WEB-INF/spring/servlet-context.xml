@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Разрешаем использование аннотаций Spring MVC (то есть @Controller и.т.д) -->
+    <annotation-driven content-negotiation-manager="contentNegotiationManager"/>
+    <context:component-scan base-package="com.magenta.sc.web.controller"/>
+    <context:component-scan base-package="com.magenta.sc.inlinebooking.controller"/>
+    <context:component-scan base-package="com.magenta.sc.inlinebooking.converter"/>
+
+    <!-- Всю статику (изображения, css-файлы, javascript) положим в папку webapp/resources -->
+    <resources mapping="/resources/**" location="/resources/"/>
+    <resources mapping="/app/**" location="/app/"/>
+    <resources mapping="/app*" location="/app*"/>
+    <resources mapping="/favicon.ico" location="/favicon.ico"/>
+
+    <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <beans:property name="prefix" value="/WEB-INF/views/"/>
+        <beans:property name="suffix" value=".jsp"/>
+        <beans:property name="exposedContextBeanNames">
+            <beans:list>
+                <beans:value>properties</beans:value>
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+
+    <!--PropertyPlaceholderConfigurer allows to use properties values in .xml configuration-->
+    <beans:bean id="myPropertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <beans:property name="locations">
+            <beans:array>
+                <beans:value>classpath:application.properties</beans:value>
+                <beans:value>classpath:env.properties</beans:value>
+            </beans:array>
+        </beans:property>
+        <beans:property name="fileEncoding" value="UTF-8"/>
+        <beans:property name="ignoreResourceNotFound" value="true"/>
+        <beans:property name="placeholderPrefix" value="${props:"/>
+    </beans:bean>
+
+    <beans:bean id="localeResolver"
+                class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <beans:property name="defaultLocale" value="${props:app.locale}" />
+    </beans:bean>
+
+    <interceptors>
+        <beans:bean class="com.magenta.sc.web.component.LogUsernameInterceptor"/>
+        <beans:bean class="com.magenta.sc.web.component.RequestLogInterceptor"/>
+        <beans:bean id="localeChangeInterceptor"
+                    class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <beans:property name="paramName" value="lang" />
+        </beans:bean>
+    </interceptors>
+
+    <!-- Специальный Handler, запоминающих в параметры ответа ResponseObject для логирования в интерсепторах -->
+    <beans:bean class="com.magenta.sc.web.component.ReturnValueHandlerInjectionFactoryBean"/>
+
+    <beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
+    <beans:bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <beans:property name="defaultContentType" value="application/json" />
+    </beans:bean>
+</beans:beans>

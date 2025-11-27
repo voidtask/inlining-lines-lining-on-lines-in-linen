@@ -1,0 +1,1 @@
+Magenta.Echo.InlineBooking.Models.Login = Magenta.Echo.InlineBooking.Models.AbstractModel.extend({});

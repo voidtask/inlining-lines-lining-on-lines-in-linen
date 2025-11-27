@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'source_sans_pro-bold';
+    src: url('/inline-booking-static/resources/fonts/sourcesansprobold-webfont.eot');
+    src: url('/inline-booking-static/resources/fonts/sourcesansprobold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/inline-booking-static/resources/fonts/sourcesansprobold-webfont.woff2') format('woff2'),
+    url('/inline-booking-static/resources/fonts/sourcesansprobold-webfont.woff') format('woff'),
+    url('/inline-booking-static/resources/fonts/sourcesansprobold-webfont.ttf') format('truetype'),
+    url('/inline-booking-static/resources/fonts/sourcesansprobold-webfont.svg#source_sans_proregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'source_sans_pro-regular';
+    src: url('/inline-booking-static/resources/fonts/sourcesansproregular-webfont.eot');
+    src: url('/inline-booking-static/resources/fonts/sourcesansproregular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/inline-booking-static/resources/fonts/sourcesansproregular-webfont.woff2') format('woff2'),
+    url('/inline-booking-static/resources/fonts/sourcesansproregular-webfont.woff') format('woff'),
+    url('/inline-booking-static/resources/fonts/sourcesansproregular-webfont.ttf') format('truetype'),
+    url('/inline-booking-static/resources/fonts/sourcesansproregular-webfont.svg#source_sans_proregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'source_sans_pro-italic';
+    src: url('/inline-booking-static/resources/fonts/sourcesansproitalic-webfont.eot');
+    src: url('/inline-booking-static/resources/fonts/sourcesansproitalic-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/inline-booking-static/resources/fonts/sourcesansproitalic-webfont.woff2') format('woff2'),
+    url('/inline-booking-static/resources/fonts/sourcesansproitalic-webfont.woff') format('woff'),
+    url('/inline-booking-static/resources/fonts/sourcesansproitalic-webfont.ttf') format('truetype'),
+    url('/inline-booking-static/resources/fonts/sourcesansproitalic-webfont.svg#source_sans_proregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('/inline-booking-static/resources/fonts/fontawesome-webfont.eot?v=4.0.3');
+    src: url('/inline-booking-static/resources/fonts/fontawesome-webfont.eot?#iefix&v=4.0.3') format('embedded-opentype'), url('/inline-booking-static/resources/fonts/fontawesome-webfont.woff?v=4.0.3') format('woff'), url('/inline-booking-static/resources/fonts/fontawesome-webfont.ttf?v=4.0.3') format('truetype'), url('/inline-booking-static/resources/fonts/fontawesome-webfont.svg?v=4.0.3#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.font-awesome {
+    font-family: FontAwesome;
+}
+
+

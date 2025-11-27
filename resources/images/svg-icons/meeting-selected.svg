@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="25px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>meeting-selected</title>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="meeting-selected" fill="#004051">
+            <path d="M12.5,24 C12.5,24 5,17 5,9.5 C5,5.35786438 8.35786438,2 12.5,2 C16.6421356,2 20,5.35786438 20,9.5 C20,17 12.5,24 12.5,24 Z M12.5,13 C14.4329966,13 16,11.4329966 16,9.5 C16,7.56700338 14.4329966,6 12.5,6 C10.5670034,6 9,7.56700338 9,9.5 C9,11.4329966 10.5670034,13 12.5,13 Z" id="Meeting-point-selected"></path>
+        </g>
+    </g>
+</svg>

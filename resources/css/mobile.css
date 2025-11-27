@@ -1,0 +1,542 @@
+@media screen and ( max-width: 800px ) {
+
+    html {
+        -webkit-text-size-adjust: none;
+    }
+    body *:not(input, textarea){
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer */
+        -khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
+        -webkit-user-select: none; /* Chrome, Safari, and Opera */
+        user-select: none;          /* Likely future */
+        -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+    }
+
+    body.mg-echo-booking-form-show {
+        overflow: hidden;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+    }
+
+    .mg-echo-booking-form-show {
+        pointer-events: none;
+    }
+    .mg-echo-booking-form-show  #mg-echo-hidden-wrap {
+        pointer-events: auto;
+    }
+
+    #mg-echo-booking-form-step-1 {
+        min-width: initial;
+        padding: 10px 20px 20px 20px;
+    }
+    .mg-echo-view#mg-echo-booking-form-step-1 .error-message {
+        padding: 1px 0 10px 25px;
+    }
+
+    .mg-echo-flex {
+        flex-direction: column;
+    }
+
+    #mg-echo-ib-form {
+        height: auto;
+    }
+
+
+    #mg-echo-booking-form-step-2 .mg-echo-column.left,
+    #mg-echo-booking-form-step-2 .mg-echo-column.right {
+        width: 100%;
+    }
+
+    .mg-echo-view .mg-echo-fields {
+        padding: 0 20px 10px 20px;
+    }
+
+    #mg-echo-booking-form-step-2 {
+        width: 100%;
+        height: 100%;
+        top: 0px;
+    }
+
+    #mg-echo-booking-form-step-2.state-anonym:not(.first-time-booking) {
+        height: 100vh;
+        overflow: hidden;
+        border-radius: 0px;
+    }
+
+    .mg-echo-fixed-wrap {
+        overflow-x: hidden;
+    }
+
+    .mg-echo-view .mg-echo-auth-panel {
+        margin-top: 15px;
+    }
+    #mg-echo-booking-form-step-2 .subtitle {
+        padding: 0px;
+    }
+
+    #mg-echo-booking-form-step-2.state-anonym .mg-echo-booking-form-full {
+        opacity: 0;
+    }
+    #mg-echo-booking-form-step-2.state-authorized .mg-echo-booking-form-full {
+        opacity: 1;
+    }
+
+    #mg-echo-booking-form-step-2 .form-error-messages {
+        z-index: 1001;
+        top: 0;
+        width: 100%;
+    }
+    #mg-echo-booking-form-step-2 .form-error-messages.for-desktop {
+        display: none;
+    }
+    #mg-echo-booking-form-step-2 .form-error-messages.for-mobile {
+        display: block;
+    }
+    .mg-echo-view .error-message {
+        margin: 0px;
+    }
+
+    #mg-echo-booking-form-step-2 .echo-title {
+        padding: 10px 0 5px 0;
+    }
+
+    #mg-echo-booking-form-step-2 .mg-echo-column.passengers-info {
+        margin-left: 0px;
+    }
+    #mg-echo-booking-form-step-2 .mg-echo-booking-form-full-top {
+        display: flex;
+        flex-direction: column;
+    }
+    #mg-echo-booking-form-step-2 .mg-echo-booking-form-full-top .left {
+        order: 2;
+    }
+    #mg-echo-booking-form-step-2 .mg-echo-booking-form-full-top .right {
+        order: 1;
+    }
+
+
+    /* Right Login panel
+    ==================================*/
+    #mg-echo-booking-form-step-2.state-anonym .mg-echo-right-overlay {
+        padding-right: 25px;
+        width: 100%;
+        overflow-y: auto;
+    }
+    #mg-echo-booking-form-step-2.state-anonym .mg-echo-background-right-overlay {
+        position: fixed;
+        opacity: 1;
+    }
+    .mg-echo-view .mg-echo-step-start .field-container .mg-echo-edit-icon {
+        margin-top: -0.5em;
+    }
+    .mg-echo-view .intl-tel-input {
+        line-height: 0;
+        padding: 1px 0;
+    }
+    .mg-echo-view .intl-tel-input .selected-flag {
+        padding: 0.5em 6px 0 0;
+    }
+    .mg-echo-view .intl-tel-input input.phone {
+        margin-top: -2px !important;
+    }
+    .mg-echo-view .intl-tel-input .country-list {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        max-height: 100%;
+        width: auto;
+        box-sizing: initial;
+        line-height: 30px;
+        padding: 10px;
+    }
+    .mg-echo-view .mg-echo-step-confirmation-code .input-wrapper {
+        line-height: 34px;
+    }
+
+    /* First Time Booking
+    ==================================*/
+    #mg-echo-booking-form-step-2.state-anonym.first-time-booking .mg-echo-right-overlay {
+        right: 0px;
+        width: 0;
+        opacity: 0;
+        padding: 0;
+    }
+    #mg-echo-booking-form-step-2.state-anonym.first-time-booking .mg-echo-booking-form-full {
+        opacity: 1;
+    }
+    #mg-echo-booking-form-step-2.state-anonym.first-time-booking .mg-echo-column.passengers-info {
+        display: none;
+    }
+    #mg-echo-booking-form-step-2.state-anonym.first-time-booking .additional-instructions-wrapper-all {
+        display: none;
+    }
+    #mg-echo-booking-form-step-2.state-anonym.first-time-booking .mg-echo-bottom-panel-fixed {
+        display: none;
+    }
+    #mg-echo-booking-form-step-2.state-anonym.first-time-booking .mg-echo-book {
+        display: none;
+    }
+    #mg-echo-booking-form-step-2.state-anonym.first-time-booking .mg-echo-bottom-panel .mg-echo-btn-next {
+        display: block;
+        width: 100%;
+    }
+    .mg-echo-booking-form-full-inner_wrap .mg-echo-close-icon {
+        display: block;
+    }
+
+
+
+    /* Bottom panel
+    ==================================*/
+    #mg-echo-booking-form-step-2 .mg-echo-bottom-panel {
+        padding: 15px 20px 20px 20px;
+    }
+    #mg-echo-booking-form-step-2 .mg-echo-info-panel {
+        min-height: auto;
+    }
+    #mg-echo-booking-form-step-2 .mg-echo-info-panel .extra-charges {
+        clear: both;
+        margin-bottom: 15px;
+        font-size: 12px;
+    }
+    #mg-echo-booking-form-step-2 .mg-echo-bottom-panel .mg-echo-link-btn.mg-close {
+        display: inline-block;
+        border: 2px solid #fff;
+        padding: 15px 0;
+        width: 50%;
+        text-align: center;
+        margin-left: 5px;
+        text-transform: uppercase;
+        text-decoration: none;
+    }
+    #mg-echo-booking-form-step-2.state-anonym.first-time-booking .mg-echo-bottom-panel .mg-echo-link-btn.mg-close {
+        display: none;
+    }
+    #mg-echo-booking-form-step-2 .mg-echo-bottom-panel .mg-echo-link-btn.mg-close a {
+        text-decoration: none;
+    }
+    #mg-echo-booking-form-step-2 .mg-echo-bottom-panel .mg-echo-column.right {
+        display: flex;
+    }
+
+    #mg-echo-booking-form-step-2 .mg-echo-info-panel .total-price, #mg-echo-booking-form-step-2 .mg-echo-info-panel .response-time {
+        min-height: initial;
+    }
+    #mg-echo-booking-form-step-2 .mg-echo-book {
+        width: 50%;
+        padding: 0 15px;
+        box-sizing: border-box;
+        margin-right: 5px;
+    }
+    #mg-echo-booking-form-step-2 .mg-echo-bottom-panel-fixed .mg-echo-book {
+        width: 100%;
+    }
+
+    #mg-echo-booking-form-step-2 .mg-echo-bottom-panel-fixed {
+        display: block;
+        pointer-events: initial;
+        opacity: 1;
+
+        position: fixed;
+        z-index: 101;
+        padding: 15px 20px 20px 20px;
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+
+        background: #dd3c57;
+        color: #fff5ff;
+        font-weight: 400;
+        font-size: 12px;
+        box-shadow: 0 0 5px 0 rgba(81, 39, 39, 0.5);
+
+        -webkit-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out;
+    }
+
+    #mg-echo-booking-form-step-2 .mg-echo-bottom-panel-fixed.mg-echo-hide {
+        pointer-events: none;
+        opacity: 0;
+        height: 0px;
+        padding: 0px 20px 0px 20px;
+
+        -webkit-transition: all 0.5s ease-out;
+        transition: all 0.5s ease-out;
+    }
+    #mg-echo-booking-form-step-2 .mg-echo-bottom-panel-fixed.mg-echo-hide .mg-echo-book {
+        opacity: 0;
+    }
+
+    /* Safari 6.1+ (10.0 is the latest version of Safari at this time) */
+    @media screen and (min-color-index:0) and(-webkit-min-device-pixel-ratio:0)
+    { @media {
+        #mg-echo-booking-form-step-2 .mg-echo-bottom-panel-fixed.mg-echo-hide {
+            position: fixed;
+        }
+    }}
+
+
+
+    /* Inputs */
+    .mg-echo-view .field-container-wrapper,
+    .mg-echo-view .field-container {
+        height: auto !important;
+        line-height: 1 !important;
+    }
+    #mg-echo-booking-form-step-1 .field-container {
+        padding-top: 4px;
+    }
+    .mg-echo-view .field-container .input-wrapper input {
+        height: auto;
+        line-height: 1;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+    .mg-echo-view .field-container .mg-echo-label {
+        float: none;
+        padding-left: 10px;
+        margin: 6px 0 2px 0;
+    }
+    .mg-echo-view .field-container .mg-echo-eye-icon {
+        margin-top: 0px;
+    }
+    #mg-echo-booking-form-step-2 .field-container-wrapper.mg-echo-focus .mg-echo-label {
+        background: none;
+        color: initial;
+    }
+    #mg-echo-booking-form-step-2 .field-container-wrapper.service-wrapper .field-container .mg-echo-label {
+        display: block;
+    }
+    #mg-echo-booking-form-step-2 .field-container-wrapper.service-wrapper .field-container .input-wrapper {
+        padding-bottom: 0px;
+    }
+    #mg-echo-booking-form-step-2 .field-container-wrapper.service-wrapper input.service {
+        margin-top: -6px;
+    }
+    #mg-echo-booking-form-step-2 .field-container {
+        margin-bottom: 0px;
+    }
+    .mg-echo-view .input-wrapper {
+        padding: 0 10px 4px 10px;
+    }
+    #mg-echo-booking-form-step-2 .additional-instructions-wrapper textarea {
+        height: 70px;
+        padding: 10px 0 0 0;
+    }
+    .mg-echo-view .field-container .mg-echo-loading,
+    .mg-echo-view .field-container .trigger,
+    .mg-echo-view .field-container-wrapper.mg-echo-error .error-icon {
+        margin-top: -0.5rem;
+        right: 0px;
+    }
+    .mg-echo-view .service-wrapper .field-container .trigger {
+        margin-top: 0px;
+    }
+    #mg-echo-booking-form-step-2 .field-container-wrapper.service-wrapper .field-container .mg-echo-service-desc {
+        padding: 0;
+    }
+    #mg-echo-booking-form-step-2 .mg-echo-right-overlay .field-container-wrapper.mg-echo-focus .mg-echo-label.left {
+        background: none;
+        color: #fff !important;
+    }
+    #mg-echo-booking-form-step-2 .field-container-wrapper.mg-echo-focus .mg-echo-label {
+        background-color: transparent !important;
+        color: inherit !important;
+    }
+    .mg-echo-view .field-container.date .input-wrapper {
+        line-height: 1;
+        height: auto;
+    }
+    .bootstrap-datetimepicker-widget.dropdown-menu {
+        width: 100%;
+        max-width: 400px;
+        box-sizing: border-box !important;
+    }
+    .flight-checker-wrapper .adjustPickupTimeBlock .bootstrap-datetimepicker-widget.dropdown-menu {
+        width: calc((100%) - -75px);
+    }
+    #mg-echo-booking-form-step-2 .expiry-and-cvv-wrapper {
+        display: flex;
+    }
+    #mg-echo-booking-form-step-2 .expiry-and-cvv-wrapper > div {
+        width: 50%;
+        float: none;
+    }
+    #mg-echo-booking-form-step-2 .expiry-wrapper {
+        margin-right: 5px;
+    }
+    #mg-echo-booking-form-step-2 .cvv-wrapper {
+        margin-left: 5px;
+    }
+    .autocomplete-suggestion .mg-echo-service-desc {
+        margin-top: 5px;
+    }
+    .mg-echo-view .credit-card-form-wrapper .cvv-wrapper .field-container, .mg-echo-view .credit-card-form-wrapper .expiry-wrapper .field-container {
+        width: 100%;
+    }
+
+
+    /* Flight Checker
+    ==================================*/
+    #mg-echo-booking-form-step-2 .flight-checker-wrapper .mg-echo-label,
+    #mg-echo-booking-form-step-2 .field-container-wrapper.flight-checker-wrapper .flight-checker {
+        display: block;
+    }
+    #mg-echo-booking-form-step-2 .flight-checker-wrapper .field-container {
+        padding: 5px 10px 15px 10px;
+    }
+    #mg-echo-booking-form-step-2 .flight-checker-wrapper .adjustPickupTimeBlock .adjustPickupTimeBlock-landingDate {
+        width: auto;
+    }
+    #mg-echo-booking-form-step-2 .flight-checker-wrapper .adjustPickupTimeBlock .adjustPickupTimeBlock-holdOff {
+        width: 65px !important;
+    }
+    .mg-echo-view .date.field-container .trigger {
+        margin-top: -9px;
+    }
+    .mg-echo-view .date.field-container .flight-checker .trigger {
+        margin-top: 0px;
+    }
+    #mg-echo-booking-form-step-2 .flight-checker-wrapper .mg-echo-label {
+        margin-bottom: 10px;
+        padding-left: 0px;
+        width: 100%;
+    }
+
+
+    /* Confirmation screen
+    ==================================*/
+    #mg-echo-booking-confirmation {
+        width: 100%;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        border-radius: 0px;
+    }
+    .mg-echo-content-info-panel {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .mg-echo-booking-confirmation-value {
+        display: block;
+    }
+    #mg-echo-booking-confirmation .additional-info .value {
+        font-size: 28px;
+    }
+    #mg-echo-booking-confirmation .additional-info .mg-echo-label {
+        margin-bottom: 0px;
+        font-size: 15px;
+    }
+
+    .mg-echo-flex-column {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        background: #fff;
+    }
+    #mg-echo-booking-form-step-2 .mg-echo-booking-form-full {
+        flex: 1;
+        overflow-y: auto;
+    }
+    #mg-echo-booking-form-step-2 .mg-echo-bottom-panel-fixed {
+        position: static;
+    }
+    .echo-btn-style-3.echo-btn-print {
+        display: none;
+    }
+    #mg-echo-booking-confirmation .mg-echo-column.mg-echo-cell {
+        display: block;
+        width: 100%;
+    }
+    #mg-echo-booking-confirmation .mg-echo-cell.mg-echo-passengers-info {
+        margin-top: 25px;
+    }
+    #mg-echo-booking-confirmation .mg-echo-cell.additional-info {
+        display: flex;
+        margin-top: 25px;
+    }
+    #mg-echo-booking-confirmation .mg-echo-bottom-buttons-panel {
+        display: flex;
+        padding: 20px 20px;
+    }
+    #mg-echo-booking-confirmation .echo-btn-style-3 {
+        min-width: initial;
+        width: 50%;
+        box-sizing: border-box;
+    }
+    #mg-echo-booking-confirmation .mg-echo-bottom-buttons-panel .echo-btn.echo-btn-show-on-map {
+        margin-right: 10px;
+    }
+    #mg-echo-booking-confirmation .mg-echo-bottom-buttons-panel .echo-btn.mg-echo-booking-confirmation-close-btn {
+        margin-left: 10px;
+    }
+    #mg-echo-booking-confirmation .echo-row-wrapper {
+        padding: 0px 20px 0px 20px;
+    }
+    #mg-echo-booking-confirmation .echo-title {
+        padding: 10px 20px 15px 20px;
+    }
+    #mg-echo-booking-confirmation .additional-info {
+        padding-left: 0px;
+    }
+    #mg-echo-booking-confirmation .additional-info .response-time {
+        margin-right: 40px;
+    }
+    #mg-echo-booking-confirmation .extra-charges {
+        margin-bottom: 25px;
+    }
+    .mg-echo-view .echo-btn-style-3 {
+        padding: 16px 8px;
+    }
+    .mg-echo-booking-confirmation-item {
+        font-size: 16px;
+    }
+    #mg-echo-booking-confirmation .echo-service-desc {
+        font-size: 14px;
+    }
+    .mg-echo-booking-confirmation-label {
+        width: 100%;
+        padding-right: 0px;
+    }
+
+}
+
+@media screen and (max-width:800px) and (min-height:569px) {
+    #mg-echo-booking-form-step-2 .mg-echo-info-panel .estimated-total, #mg-echo-booking-form-step-2 .mg-echo-info-panel .response-time .mg-echo-label {
+        font-size: 18px;
+    }
+    #mg-echo-booking-form-step-2 .mg-echo-info-panel .mg-echo-price, #mg-echo-booking-form-step-2 .mg-echo-info-panel .response-time .value {
+        font-size: 30px;
+    }
+    #mg-echo-booking-form-step-2 .mg-echo-bottom-panel .mg-echo-btn-next {
+        padding: 16px;
+    }
+    #mg-echo-booking-form-step-2 .mg-echo-info-panel .extra-charges {
+        font-size: 13px;
+    }
+}
+
+@media screen and ( max-width: 360px ) {
+
+    .flight-checker-wrapper .adjustPickupTimeBlock .bootstrap-datetimepicker-widget.dropdown-menu {
+        left: -71px !important;
+        width: calc((100%) - -146px);
+    }
+    .bootstrap-datetimepicker-widget.dropdown-menu.pull-right:before {
+        right: 50% !important;
+    }
+    .bootstrap-datetimepicker-widget.dropdown-menu.pull-right:after {
+        right: calc((50%) - -1px) !important;
+    }
+
+}
+

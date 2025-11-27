@@ -1,0 +1,131 @@
+/*Bootstrap css for datetimepicker*/
+
+:before, :after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+
+.collapse {
+    display: none;
+}
+
+.collapse.in {
+    display: block;
+}
+
+tr.collapse.in {
+    display: table-row;
+}
+tbody.collapse.in {
+    display: table-row-group;
+}
+.collapsing {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    -webkit-transition: height .35s ease;
+    -o-transition: height .35s ease;
+    transition: height .35s ease;
+}
+
+table {
+    background-color: transparent;
+}
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.table-condensed>thead>tr>th, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>tbody>tr>td, .table-condensed>tfoot>tr>td {
+    padding: 5px;
+}
+
+.bootstrap-datetimepicker-widget a {
+    color: #ed801e;
+    text-decoration: none;
+}
+.bootstrap-datetimepicker-widget a {
+    background: 0 0;
+}
+
+@font-face{
+    font-family:'Glyphicons Halflings';
+    src:url('/inline-booking-static/lib/bootstrap-for-datetime-picker/fonts/glyphicons-halflings-regular.eot');
+    src:url('/inline-booking-static/lib/bootstrap-for-datetime-picker/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+    url('/inline-booking-static/lib/bootstrap-for-datetime-picker/fonts/glyphicons-halflings-regular.woff') format('woff'),
+    url('/inline-booking-static/lib/bootstrap-for-datetime-picker/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
+    url('/inline-booking-static/lib/bootstrap-for-datetime-picker/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
+
+
+.glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.glyphicon-time:before {
+    content: "\e023";
+}
+
+.glyphicon-calendar:before {
+    content: "\e109";
+}
+
+.glyphicon-chevron-up:before {
+    content: "\e113";
+}
+
+.glyphicon-chevron-down:before {
+    content: "\e114";
+}
+
+.glyphicon-chevron-right:before {
+    content: "\e080";
+}
+
+.glyphicon-chevron-left:before {
+    content: "\e079";
+}
