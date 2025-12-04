@@ -49,7 +49,7 @@ Magenta.Echo.InlineBooking.Views.WebPaymentPopup = function (_configs, onClosePo
         form.method = 'POST';
         form.action = url;
         form.target = '_blank';
-        form.rel = 'noopener';
+        form.rel = 'noopener noreferrer';
         
         for (var key in formData) {
             if (formData.hasOwnProperty(key)) {
