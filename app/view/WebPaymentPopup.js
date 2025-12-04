@@ -1,6 +1,5 @@
 Magenta.Echo.InlineBooking.Views.WebPaymentPopup = function (_configs, onClosePopup) {
 
-    var webPaymentWindow = null;
     var declined = false;
 
     var configs = {
@@ -10,18 +9,10 @@ Magenta.Echo.InlineBooking.Views.WebPaymentPopup = function (_configs, onClosePo
         title: ''
     };
 
-    var webPaymentWindowConfigs = {
-        features: '',
-        left: 0,
-        right: 0,
-        template: '<form method="post"><input id="Reference" name="Reference" type="hidden"></form><strong>Loading ...</strong>'
-    };
-
     var timer = null;
     var pollingTimer = null;
 
     setConfigs(_configs);
-    setWebPaymentWindowConfigs();
 
     return {
         webPayment: webPayment,
@@ -38,12 +29,6 @@ Magenta.Echo.InlineBooking.Views.WebPaymentPopup = function (_configs, onClosePo
      *  - options.data - {amount, card_id, expire_date, cvv}
      */
     function webPayment(options) {
-        if (isWebPaymentWindowOpened()) {
-            webPaymentWindow.focus();
-            return;
-        }
-
-        openWebPaymentWindow();
         performWebPayment(options.data, options.success, options.failure);
     }
 
@@ -52,18 +37,34 @@ Magenta.Echo.InlineBooking.Views.WebPaymentPopup = function (_configs, onClosePo
      *  - options.data  - {amount}
      */
     function registerCard(options) {
-        if (isWebPaymentWindowOpened()) {
-            webPaymentWindow.focus();
-            return;
-        }
-
-        openWebPaymentWindow();
         performRegisterCard(options.data, options.success, options.failure);
     }
 
     /**
      * Private Methods
      */
+
+    function openPaymentTab(url, formData) {
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = url;
+        form.target = '_blank';
+        form.rel = 'noopener';
+        
+        for (var key in formData) {
+            if (formData.hasOwnProperty(key)) {
+                var input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = formData[key];
+                form.appendChild(input);
+            }
+        }
+        
+        document.body.appendChild(form);
+        form.submit();
+        document.body.removeChild(form);
+    }
 
     function performWebPayment(data, success, failure) {
         mg_echo_global.ajax({
@@ -100,11 +101,11 @@ Magenta.Echo.InlineBooking.Views.WebPaymentPopup = function (_configs, onClosePo
     }
 
     function load3dsPayment(data, success, failure) {
-        webPaymentWindow.document.body.innerHTML = '<form method="post" action="' + data.acsUrl + '">'
-            + '<input name="TermUrl" value="' + data.termUrl + '" type="hidden">'
-            + '<input name="PaReq" value="' + data.paReq + '" type="hidden">'
-            + '<input name="MD" value="' + data.md + '" type="hidden">'
-            + '</form><strong>Loading ...</strong>';
+        openPaymentTab(data.acsUrl, {
+            TermUrl: data.termUrl,
+            PaReq: data.paReq,
+            MD: data.md
+        });
 
         waitForWindowPopupFeedback(function (result) {
             success(result);
@@ -116,12 +117,9 @@ Magenta.Echo.InlineBooking.Views.WebPaymentPopup = function (_configs, onClosePo
     }
 
     function loadDeviceDetails(data, success, failure) {
-        webPaymentWindow.document.body.innerHTML = '<html>'
-            + '<form method="post" action="' + data.methodUrl + '">'
-            + '<input name="threeDSMethodData" value="' + data.md + '" type="hidden">'
-            + '</form>' +
-            '<strong>Loading ...</strong>' +
-            '</html>';
+        openPaymentTab(data.methodUrl, {
+            threeDSMethodData: data.md
+        });
 
         waitForWindowPopupFeedback.call(this, function (response) {
             success(response);
@@ -132,17 +130,12 @@ Magenta.Echo.InlineBooking.Views.WebPaymentPopup = function (_configs, onClosePo
 
             closeWebPaymentWindow();
         }, { receiptId: data.receipt });
-
-        this.submitWindowPopupForm();
     }
 
     function loadChallenge(data, success, failure) {
-        webPaymentWindow.document.body.innerHTML = '<html>'
-            + '<form method="post" action="' + data.challengeUrl + '">'
-            + '<input name="creq" value="'+data.md+'" type="hidden">'
-            + '</form>' +
-            '<strong>Loading ...</strong>' +
-            '</html>';
+        openPaymentTab(data.challengeUrl, {
+            creq: data.md
+        });
 
         waitForWindowPopupFeedback.call(this, function (response) {
             success(response);
@@ -153,8 +146,6 @@ Magenta.Echo.InlineBooking.Views.WebPaymentPopup = function (_configs, onClosePo
 
             closeWebPaymentWindow();
         }, { receiptId: data.receipt });
-
-        this.submitWindowPopupForm();
     }
 
     function performRegisterCard(data, success, failure) {
@@ -188,9 +179,9 @@ Magenta.Echo.InlineBooking.Views.WebPaymentPopup = function (_configs, onClosePo
     }
 
     function successRegisterCard(data, success, failure) {
-        webPaymentWindow.document.body.innerHTML = '<form method="post" action="' + data.url + '">'
-            + '<input id="Reference" name="Reference" type="hidden" value="' + data.reference  + '">'
-            + '</form><strong>Loading ...</strong>';
+        openPaymentTab(data.url, {
+            Reference: data.reference
+        });
 
         waitForWindowPopupFeedback(function (result) {
             success(result);
@@ -201,31 +192,14 @@ Magenta.Echo.InlineBooking.Views.WebPaymentPopup = function (_configs, onClosePo
         }, { localPaymentReference: data.localPaymentReference });
     }
 
-    function openWebPaymentWindow() {
-        declined = false;
-        webPaymentWindow = window.open(configs.url, configs.title, webPaymentWindowConfigs.features);
-        webPaymentWindow.focus();
-        webPaymentWindow.document.body.innerHTML = webPaymentWindowConfigs.template;
-    }
-
     function closeWebPaymentWindow() {
          onClosePopup();
-         if (webPaymentWindow) {
-             webPaymentWindow.close();
-             webPaymentWindow = null;
-         }
-    }
-
-    function isWebPaymentWindowOpened() {
-        return webPaymentWindow && !webPaymentWindow.closed;
     }
 
     function waitForWindowPopupFeedback(success, failure, paymentReference) {
         if (pollingTimer) {
             clearInterval(pollingTimer);
         }
-
-        webPaymentWindow.document.forms[0].submit();
 
         pollingTimer = setInterval(function () {
             mg_echo_global.ajax({
@@ -254,17 +228,6 @@ Magenta.Echo.InlineBooking.Views.WebPaymentPopup = function (_configs, onClosePo
                 configs[key] = _configs[key];
             }
         }
-    }
-
-    function setWebPaymentWindowConfigs() {
-        var dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : screen.left;
-        var dualScreenTop = window.screenTop !== undefined ? window.screenTop : screen.top;
-        var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
-        var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
-
-        webPaymentWindowConfigs.left = ((width / 2) - (configs.width / 2)) + dualScreenLeft;
-        webPaymentWindowConfigs.top = ((height / 3) - (configs.height / 3)) + dualScreenTop;
-        webPaymentWindowConfigs.features = 'scrollbars=yes, width=' + configs.width + ', height=' + configs.height + ', top=' + webPaymentWindowConfigs.top + ', left=' + webPaymentWindowConfigs.left;
     }
 
 };
