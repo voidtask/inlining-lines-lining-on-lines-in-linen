@@ -240,8 +240,14 @@ Magenta.Echo.InlineBooking.Views.WebPaymentPopup = function (_configs, onClosePo
         )
         .done(function (data) {
           if (data && data.success === true) {
-            clearInterval(pollingTimer);
-            success(data);
+            if (data.status === "COMPLETED") {
+              clearInterval(pollingTimer);
+              success(data);
+            } else if (data.status === "FAILED") {
+              clearInterval(pollingTimer);
+              failure(data);
+            }
+            // If status is "PENDING", continue polling
           }
         })
         .fail(function () {
